@@ -45,6 +45,7 @@
 - (IBAction)calculateSplitAmount:(id)sender {
     [self getUsersAmountInput];
     
+    //TODO: Fix crash when billAmountInDollars = 0
     self.eachPersonPays = [self.billAmountInDollars decimalNumberByDividingBy:self.numberOfPeople];
     
     NSLog(@"Each person pays: %@", self.eachPersonPays);
@@ -53,6 +54,7 @@
     [self.showResult setText:eachPersonPaysString];
     
     [self.billAmountTextField setText:@""];
+    
     [self.billAmountTextField resignFirstResponder];
     
 
