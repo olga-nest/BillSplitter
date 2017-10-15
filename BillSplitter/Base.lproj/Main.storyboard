@@ -22,14 +22,11 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="getBillAmount:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Xco-kH-egL"/>
-                                </connections>
                             </textField>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="2" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="isP-X9-5kn">
                                 <rect key="frame" x="18" y="120" width="339" height="31"/>
                                 <connections>
-                                    <action selector="getNumberOfPeople:" destination="BYZ-38-t0r" eventType="valueChanged" id="eRX-U6-ZQg"/>
+                                    <action selector="getNumberOfPeople:" destination="BYZ-38-t0r" eventType="valueChanged" id="Lhb-MY-yfJ"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hh-E3-H4A">
