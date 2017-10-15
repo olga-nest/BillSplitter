@@ -14,6 +14,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *showResult;
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 @property (nonatomic, assign) int sliderCurrentValue; //Check if this really needed
+@property (nonatomic) NSDecimalNumber *billAmountInDollars;
+@property (nonatomic) NSString *usersInputAmount;
+@property (nonatomic) NSDecimalNumber *eachPersonPays;
+@property (nonatomic) NSDecimalNumber *numberOfPeople;
 
 @end
 
@@ -21,19 +25,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self setupTextField]; //show phonePad keyboard and "x" sign when done editing
 }
-- (IBAction)getBillAmount:(UITextField *)sender {
-    
-    
+
+-(void)getUsersAmountInput {
+    NSString *usersInputAmount;
+    usersInputAmount = self.billAmountTextField.text;
+    NSLog(@"user's Amount input: %@", usersInputAmount);
+    self.billAmountInDollars = [NSDecimalNumber decimalNumberWithString:self.usersInputAmount];
+    NSLog(@"user's amount input as DecimalNumber: %@", self.billAmountTextField);
 }
+
 - (IBAction)getNumberOfPeople:(UISlider *)sender {
     int sliderCurrentValue = sender.value;
-    
+    NSDecimalNumber *numberOfPeople = [NSDecimalNumber numberWithInteger:sliderCurrentValue];
+    NSLog(@"User entered %@ people", numberOfPeople);
     self.sliderLabel.text = [NSString stringWithFormat:@"%i", sliderCurrentValue];
 }
 
-- (IBAction)calculateSplitAmount:(UIButton *)sender {
+
+- (IBAction)calculateSplitAmount:(id)sender {
+    [self getUsersAmountInput];
+    [self getNumberOfPeople:sender];
+    
+    NSDecimalNumber *eachPersonPays = [self.billAmountInDollars decimalNumberByDividingBy:self.numberOfPeople];
+    
+    NSLog(@"Each person pays: %@", eachPersonPays);
+    
+    NSString *eachPersonPaysString = [NSString stringWithFormat:@"Each person pays: %@", self.eachPersonPays];
+    [self.showResult setText:eachPersonPaysString];
+    
+    [self.billAmountTextField setText:@""];
+    [self.billAmountTextField resignFirstResponder];
+    
+
 }
 
 - (void)setupTextField
@@ -44,7 +69,7 @@
     
 //    self.tipAmountTextField.keyboardType = UIKeyboardTypePhonePad;
 //    self.tipAmountTextField.clearButtonMode = UITextFieldViewModeUnlessEditing;
-//    
+//
 }
 
 @end
