@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *showResult;
+@property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 @property (nonatomic, assign) int sliderCurrentValue; //Check if this really needed
 
 @end
@@ -23,6 +24,8 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 - (IBAction)getBillAmount:(UITextField *)sender {
+    
+    
 }
 - (IBAction)getNumberOfPeople:(UISlider *)sender {
     int sliderCurrentValue = sender.value;
@@ -31,6 +34,17 @@
 }
 
 - (IBAction)calculateSplitAmount:(UIButton *)sender {
+}
+
+- (void)setupTextField
+{
+    // set the keyboard type to phonePad
+    self.billAmountTextField.keyboardType = UIKeyboardTypePhonePad;
+    self.billAmountTextField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+    
+//    self.tipAmountTextField.keyboardType = UIKeyboardTypePhonePad;
+//    self.tipAmountTextField.clearButtonMode = UITextFieldViewModeUnlessEditing;
+//    
 }
 
 @end

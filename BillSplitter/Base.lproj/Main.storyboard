@@ -81,6 +81,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="billAmountTextField" destination="hRB-gU-gvX" id="c51-nE-7fw"/>
                         <outlet property="showResult" destination="8pu-wO-swS" id="7A7-Dz-UC1"/>
                         <outlet property="slider" destination="isP-X9-5kn" id="HDL-cw-DIm"/>
                         <outlet property="sliderLabel" destination="ffF-Z4-Hxk" id="RYR-d3-zHe"/>
