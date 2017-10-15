@@ -39,6 +39,8 @@
     self.numberOfPeople = [[NSDecimalNumber alloc] initWithInt:sliderCurrentValue];
     NSLog(@"User entered %@ people", self.numberOfPeople);
     self.sliderLabel.text = [NSString stringWithFormat:@"%i", sliderCurrentValue];
+    
+    [self.billAmountTextField resignFirstResponder];
 }
 
 
