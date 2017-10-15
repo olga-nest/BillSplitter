@@ -50,7 +50,19 @@
     
     NSLog(@"Each person pays: %@", self.eachPersonPays);
     
-    NSString *eachPersonPaysString = [NSString stringWithFormat:@"Each person pays: %@", self.eachPersonPays];
+    //round to 2 decimal places
+    NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
+                                                                                              scale:2
+                                                                                   raiseOnExactness:NO
+                                                                                    raiseOnOverflow:NO
+                                                                                   raiseOnUnderflow:NO
+                                                                                raiseOnDivideByZero:NO];
+    
+    NSDecimalNumber *roundedNumber = [self.eachPersonPays decimalNumberByRoundingAccordingToBehavior:behavior];
+    NSLog(@"rounded number is %@", roundedNumber);
+    
+    NSString *eachPersonPaysString = [NSString stringWithFormat:@"Each person pays: %@", roundedNumber];
+    
     [self.showResult setText:eachPersonPaysString];
     
     [self.billAmountTextField setText:@""];
@@ -65,10 +77,7 @@
     // set the keyboard type to phonePad
     self.billAmountTextField.keyboardType = UIKeyboardTypePhonePad;
     self.billAmountTextField.clearButtonMode = UITextFieldViewModeUnlessEditing;
-    
-//    self.tipAmountTextField.keyboardType = UIKeyboardTypePhonePad;
-//    self.tipAmountTextField.clearButtonMode = UITextFieldViewModeUnlessEditing;
-//
+
 }
 
 @end
