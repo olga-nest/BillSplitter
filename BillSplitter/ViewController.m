@@ -13,9 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *showResult;
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
-@property (nonatomic, assign) int sliderCurrentValue; //Check if this really needed
 @property (nonatomic) NSDecimalNumber *billAmountInDollars;
-@property (nonatomic) NSString *usersInputAmount;
 @property (nonatomic) NSDecimalNumber *eachPersonPays;
 @property (nonatomic) NSDecimalNumber *numberOfPeople;
 
@@ -32,25 +30,24 @@
     NSString *usersInputAmount;
     usersInputAmount = self.billAmountTextField.text;
     NSLog(@"user's Amount input: %@", usersInputAmount);
-    self.billAmountInDollars = [NSDecimalNumber decimalNumberWithString:self.usersInputAmount];
+    self.billAmountInDollars = [NSDecimalNumber decimalNumberWithString:usersInputAmount];
     NSLog(@"user's amount input as DecimalNumber: %@", self.billAmountTextField);
 }
 
 - (IBAction)getNumberOfPeople:(UISlider *)sender {
     int sliderCurrentValue = sender.value;
-    NSDecimalNumber *numberOfPeople = [NSDecimalNumber numberWithInteger:sliderCurrentValue];
-    NSLog(@"User entered %@ people", numberOfPeople);
+    self.numberOfPeople = [[NSDecimalNumber alloc] initWithInt:sliderCurrentValue];
+    NSLog(@"User entered %@ people", self.numberOfPeople);
     self.sliderLabel.text = [NSString stringWithFormat:@"%i", sliderCurrentValue];
 }
 
 
 - (IBAction)calculateSplitAmount:(id)sender {
     [self getUsersAmountInput];
-    [self getNumberOfPeople:sender];
     
-    NSDecimalNumber *eachPersonPays = [self.billAmountInDollars decimalNumberByDividingBy:self.numberOfPeople];
+    self.eachPersonPays = [self.billAmountInDollars decimalNumberByDividingBy:self.numberOfPeople];
     
-    NSLog(@"Each person pays: %@", eachPersonPays);
+    NSLog(@"Each person pays: %@", self.eachPersonPays);
     
     NSString *eachPersonPaysString = [NSString stringWithFormat:@"Each person pays: %@", self.eachPersonPays];
     [self.showResult setText:eachPersonPaysString];
